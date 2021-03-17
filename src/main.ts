@@ -1,4 +1,5 @@
 import { NestFactory } from '@nestjs/core';
+import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
 import * as cookieParser from 'cookie-parser';
 import * as session from 'express-session';
@@ -16,9 +17,9 @@ console.log("argv : %s", process.argv);
  */
 class MyEventProcessor extends EventEmitter {
 
-  app: INestApplication;
+  app: NestExpressApplication;
 
-  constructor(app: INestApplication) {
+  constructor(app: NestExpressApplication) {
     super();
 
     this.app = app;
@@ -43,6 +44,10 @@ class MyEventProcessor extends EventEmitter {
         saveUninitialized: false,
       }),
     );
+
+    app.useStaticAssets(join(__dirname, '..', 'public'));
+    app.setBaseViewsDir(join(__dirname, '..', 'views'));
+    app.setViewEngine('hbs');    
      
   }
 
@@ -57,10 +62,10 @@ class MyEventProcessor extends EventEmitter {
 }
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, { cors: true });
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, { cors: true });
+  const processor = new MyEventProcessor(app);
 
-  // 미들웨어 처리
-  app.use(cookieParser());
+  processor.emit("ready");
 
   await app.listen(3000);
 }
