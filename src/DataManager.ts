@@ -31,12 +31,10 @@ export class DataManager {
       encoding: "utf-8"
     });
 
-    console.log("현재 컨트롤러 목록 : ");
-    console.log("===========================");
     items.forEach(subDir => {
       this.readSubDir(root, subDir);
     });
-    console.log("===========================");
+    
   }
 
   /**

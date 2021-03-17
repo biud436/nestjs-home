@@ -1,10 +1,10 @@
-import {Controller, Get} from "@nestjs/common";
+import {Controller, Get, Query} from "@nestjs/common";
 
 @Controller("/login")
 export class LoginController {
 
     @Get()
-    login(): string {
-        return "login-test";
+    login(@Query("id") id, @Query("pw") pw): string {
+        return `id : ${id}, pw : ${pw}`;
     }
 }
