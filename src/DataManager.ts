@@ -1,9 +1,14 @@
 import * as fs from 'fs';
 import * as path from "path";
+import { ConsoleColor } from './ConsoleColor';
 
 const ROOT_DIR : string = process.cwd();
 const MY_ROOT = path.join(ROOT_DIR, "src");
 
+/**
+ * @class 
+ * @description
+ */
 export class DataManager {
 
   _dirs: String[];
@@ -34,7 +39,7 @@ export class DataManager {
     items.forEach(subDir => {
       this.readSubDir(root, subDir);
     });
-    
+
   }
 
   /**
@@ -54,7 +59,7 @@ export class DataManager {
         
         if(fileStat.isFile()) {
           if(path.extname(sub).includes(".ts")) {
-            console.log("이것은 타입스크립트 파일입니다 ----> %s", sub);
+            console.log(`${ConsoleColor.FgYellow}이것은 ${ConsoleColor.FgGreen}타입스크립트 ${ConsoleColor.FgYellow}파일입니다${ConsoleColor.Reset} ----> %s`, sub);
           } else {
             console.log("file : %s", sub);
           }
