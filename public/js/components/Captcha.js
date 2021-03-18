@@ -91,7 +91,7 @@ class Captcha extends EventEmitter {
             }
 
             ctx.fillStyle = `rgba(255,${128 + (Math.random() * 128) >> 0},255,${128 + (Math.random() * 128) >> 0})`;
-            ctx.font = `16px 굴림체`;
+            ctx.font = `16px Noto Sans KR`;
             ctx.textAlign = "center";
 
             const t = ctx.measureText(ch);
