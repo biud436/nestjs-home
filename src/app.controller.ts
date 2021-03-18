@@ -1,6 +1,9 @@
 import { Controller, Get, Render, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { AppService } from './app.service';
+import * as fs from "fs";
+import * as path from "path";
+import {promisify} from "util";
 
 @Controller()
 export class AppController {
@@ -8,12 +11,24 @@ export class AppController {
 
   @Get()
   @Render('index')
-  root() {
+  async root() {
+
     return { 
-      message1: "테스트 메시지 1",
-      message2: "테스트 메시지 2",
-      message3: "테스트 메시지 3",
-      buttonText1: "버튼1"
+      "message1": "테스트 메시지 1",
+      "message2": "테스트 메시지 2",
+      "message3": "테스트 메시지 3",
+      "buttonText1": "버튼1",
+      "left": "왼쪽",
+      "center": "중앙",
+      "right": "오른쪽",
+      "header": {
+        "logo": "https://dummyimage.com/64x64/000/fff",
+        "menu1": "메뉴1",
+        "menu2": "메뉴2",
+      },
+      "content": "내용",
+      "title": "회원 가입 페이지"
     };
+
   }
 }

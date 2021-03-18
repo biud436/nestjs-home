@@ -18,7 +18,7 @@ export class DataManager {
    */
   constructor() {
     this.initWithMembers();
-    ["src", "src/controllers"].forEach( i => this.readDirs(path.join(ROOT_DIR, i)));
+    ["src"].forEach( i => this.readDirs(path.join(ROOT_DIR, i)));
   }
 
   /**
