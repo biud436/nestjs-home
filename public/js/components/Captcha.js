@@ -4,6 +4,8 @@ class Captcha extends EventEmitter {
     constructor() {
         super();
 
+        this._isDirty = true;
+
         this.on("refresh", () => this.initWithMembers());
         this.initWithMembers();
         this.start();
@@ -47,6 +49,11 @@ class Captcha extends EventEmitter {
         });
     }
 
+    /**
+     * 캔버스를 생성합니다.
+     * 
+     * @param {string[]}} data 
+     */
     initWithCanvas(data) {
 
         const {text} = data;
@@ -55,7 +62,8 @@ class Captcha extends EventEmitter {
          * @type {HTMLCanvasElement}
          */
         this._canvas = document.querySelector("#captcha-canvas");;
-        this._canvas.style.width = "400px";
+
+        this._canvas.style.width = this._isDirty ? "300px" : `auto`;
         this._canvas.style.height = "150px";
 
         this._canvas.style.filter = "blur(1px) hue-rotate(90deg)";
@@ -70,7 +78,10 @@ class Captcha extends EventEmitter {
         const canvasWidth = parseInt(canvasStyle.width);
         const canvasHeight = parseInt(canvasStyle.height);
 
-        ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+        if(this._isDirty) {
+            ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+            this._isDirty = false;
+        }
 
         ctx.beginPath();
         ctx.fillStyle = "black";
