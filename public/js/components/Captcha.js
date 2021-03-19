@@ -4,6 +4,7 @@ class Captcha extends EventEmitter {
     constructor() {
         super();
 
+        this.on("refresh", () => this.initWithMembers());
         this.initWithMembers();
         this.start();
     }
@@ -23,8 +24,7 @@ class Captcha extends EventEmitter {
 
             // 캡챠 설정
             this.initWithCanvas(data);
-        });
-
+        });        
     }
 
     loadJson(url) {
@@ -69,6 +69,8 @@ class Captcha extends EventEmitter {
 
         const canvasWidth = parseInt(canvasStyle.width);
         const canvasHeight = parseInt(canvasStyle.height);
+
+        ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
         ctx.beginPath();
         ctx.fillStyle = "black";

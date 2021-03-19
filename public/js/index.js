@@ -8,7 +8,10 @@ class App extends EventEmitter {
     }
 
     initWithMembers() {
+        
+        // 캡챠를 설정합니다.
         this._captcha = new Captcha();
+        
     }
 
     start() {

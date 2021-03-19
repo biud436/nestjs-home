@@ -1,0 +1,11 @@
+.refresh-button {
+    background-image: url("images/iocns/refresh.svg");
+    background-size: 32px 32px;
+    width: calc(32px * 1.2);
+    height: calc(32px * 1.5);
+    cursor: pointer;   
+}
+
+#captcha-canvas {
+    width: 80%;
+}     
