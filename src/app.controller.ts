@@ -5,6 +5,8 @@ import * as fs from "fs";
 import * as path from "path";
 import {promisify} from "util";
 import { AuthGuard } from '@nestjs/passport';
+import {getConnection} from "typeorm";
+import { UsersModule } from './users/users.module';
 
 @Controller()
 export class AppController {
@@ -13,6 +15,15 @@ export class AppController {
   @Get()
   @Render('index')
   async root() {
+
+    // 쿼리 빌더
+    // await getConnection()
+    //   .createQueryBuilder()
+    //   .insert()
+    //   .into(UsersModule)
+    //   .values([
+    //     {}
+    //   ])
 
     return { 
       "message1": "테스트 메시지 1",
