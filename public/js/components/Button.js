@@ -39,3 +39,5 @@ class RefreshButton extends EventEmitter {
     }
 
 }
+
+export {RefreshButton};

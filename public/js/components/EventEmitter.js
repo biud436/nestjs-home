@@ -35,7 +35,7 @@ class EventEmitter {
 
         if(items instanceof Array) {
             items.forEach(callbackFunc => {
-                if(ev instanceof Function) {
+                if(callbackFunc instanceof Function) {
                     callbackFunc(...args);
                 }
             });
