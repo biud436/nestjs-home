@@ -16,15 +16,6 @@ export class AppController {
   @Render('index')
   async root() {
 
-    // 쿼리 빌더
-    // await getConnection()
-    //   .createQueryBuilder()
-    //   .insert()
-    //   .into(UsersModule)
-    //   .values([
-    //     {}
-    //   ])
-
     return { 
       "message1": "테스트 메시지 1",
       "message2": "테스트 메시지 2",

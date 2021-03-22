@@ -6,6 +6,10 @@ import * as session from 'express-session';
 import {EventEmitter} from "events";
 import { INestApplication } from '@nestjs/common';
 import { join } from 'path';
+import { CryptoManager } from "./CryptoManager";
+import { fstat } from 'node:fs';
+import * as fs from "fs";
+import * as path from "path";
 
 console.log("argv : %s", process.argv);
 
@@ -66,6 +70,10 @@ async function bootstrap() {
   const processor = new MyEventProcessor(app);
 
   processor.emit("ready");
+
+  const data = CryptoManager.encrypt("eo15028a!!");
+
+  fs.writeFileSync("encryptKey.txt", data, "utf-8");
 
   await app.listen(3000);
 }
