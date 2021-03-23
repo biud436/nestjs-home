@@ -196,8 +196,8 @@ class Captcha extends EventEmitter {
 
     makeRandomPoint(selectItems, ctx, lines, maxPoints) {
 
-        // 2. 벡터 3개를 선택합니다.
-        for(let i = 0; i < 3; i++) {
+        // 2. 벡터 4개를 선택합니다.
+        for(let i = 0; i < 4; i++) {
 
             // 램덤한 인덱스 선택 (0 ~ 39)
             const selectedIndex = Math.floor(Math.random() * maxPoints);
@@ -228,6 +228,7 @@ class Captcha extends EventEmitter {
         const v1 = selectItems[0];
         const v2 = selectItems[1];
         const v3 = selectItems[2];
+        const s = selectItems[3];
 
         ctx = this._canvas.getContext("2d");
 
@@ -238,10 +239,11 @@ class Captcha extends EventEmitter {
         const r = () => Math.floor(Math.random() * 255);
 
         ctx.fillStyle = `rgba(${r()}, ${r()}, ${r()}, 64})`;
-        ctx.strokeStyle = `rgba(${r()}, ${r()}, ${r()}, 64)`;            
+        ctx.strokeStyle = `rgba(${r()}, ${r()}, ${r()}, 64)`;   
+        ctx.globalAlpha = 0.2 + (Math.random() * 0.5);         
         ctx.lineWidth = 3 + Math.floor(Math.random() * 7);        
 
-        ctx.moveTo(v1.x, v1.y); 
+        ctx.moveTo(s.x, s.y); 
         ctx.bezierCurveTo(v1.x, v1.y, v2.x, v2.y, v3.x, v3.y);
         ctx.stroke();
 
