@@ -238,12 +238,19 @@ class Captcha extends EventEmitter {
 
         const r = () => Math.floor(Math.random() * 255);
 
-        ctx.fillStyle = `rgba(${r()}, ${r()}, ${r()}, 64})`;
-        ctx.strokeStyle = `rgba(${r()}, ${r()}, ${r()}, 64)`;   
+        ctx.fillStyle = `rgb(${r()}, ${r()}, ${r()}})`;
+        ctx.strokeStyle = `rgb(${r()}, ${r()}, ${r()})`;   
+
+        // 0.2 ~ 0.7 사이의 선 투명도 설정
+
         ctx.globalAlpha = 0.2 + (Math.random() * 0.5);         
+
+        // 3 ~ 10 사이의 선 굵기 설정
         ctx.lineWidth = 3 + Math.floor(Math.random() * 7);        
 
         ctx.moveTo(s.x, s.y); 
+
+        // 3차 베지어 곡선을 그린다.
         ctx.bezierCurveTo(v1.x, v1.y, v2.x, v2.y, v3.x, v3.y);
         ctx.stroke();
 
