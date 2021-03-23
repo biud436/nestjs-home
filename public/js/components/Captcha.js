@@ -242,7 +242,6 @@ class Captcha extends EventEmitter {
         ctx.strokeStyle = `rgb(${r()}, ${r()}, ${r()})`;   
 
         // 0.2 ~ 0.7 사이의 선 투명도 설정
-
         ctx.globalAlpha = 0.2 + (Math.random() * 0.5);         
 
         // 3 ~ 10 사이의 선 굵기 설정
