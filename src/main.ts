@@ -70,7 +70,7 @@ async function bootstrap() {
 
   processor.emit("ready");
 
-  await app.listen(3000);
+  await app.listen(3002);
 }
 
 bootstrap();
